@@ -1,0 +1,15 @@
+AuroraIMG-6M (ONNX conversion)
+
+The files in this directory are derived from AuroraIMG-6M by AuroraAI-Research (2026),
+https://huggingface.co/AuroraAI-Research/AuroraIMG-6M, revision 3d66743c3139d034b832a670d067221f5d544bbb,
+licensed under the Apache License, Version 2.0 (see LICENSE in this directory).
+
+Changes from the original:
+- text_encoder.onnx, denoiser.onnx and decoder.onnx were converted from the original
+  diffusion_pytorch_model.safetensors weights to ONNX with scripts/export_onnx.py. The weights are unchanged.
+- decoder.onnx also includes the latent un-normalization (lat_mu, lat_sd from vae/config.json) and the
+  output scaling to 0-1 RGB, which the original pipeline.py does outside the VAE.
+- tokenizer.json is copied unchanged from tokenizer/tokenizer.json.
+
+The model was trained on CC12M (https://huggingface.co/datasets/pixparse/cc12m-wds), which is distributed as
+image URLs and captions; the underlying images carry their own licenses.

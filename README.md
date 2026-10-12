@@ -50,6 +50,8 @@ curl -H "Authorization: Bearer dev" "localhost:8080/generate?prompt=orange+cat" 
 
 ## Model and license
 
-`model/` holds an ONNX conversion of [AuroraAI-Research/AuroraIMG-6M](https://huggingface.co/AuroraAI-Research/AuroraIMG-6M) at revision `3d66743`, licensed under the Apache License 2.0 (copy in [`model/LICENSE`](model/LICENSE)). The weights are unchanged; they were converted from the original safetensors to ONNX, and the latent un-normalization and output scaling were folded into `decoder.onnx`. Output matches the original pipeline to within 1/255 per pixel.
+`model/` holds an ONNX conversion of [AuroraAI-Research/AuroraIMG-6M](https://huggingface.co/AuroraAI-Research/AuroraIMG-6M) at revision `3d66743`, licensed under the Apache License 2.0 (copy in [`model/LICENSE`](model/LICENSE), attribution and changes in [`model/NOTICE`](model/NOTICE); both ship in the Docker image). The weights are unchanged; they were converted from the original safetensors to ONNX, and the latent un-normalization and output scaling were folded into `decoder.onnx`. Output matches the original pipeline to within 1/255 per pixel.
+
+The model was trained on [CC12M](https://huggingface.co/datasets/pixparse/cc12m-wds), which is distributed as image URLs and captions; the underlying images carry their own licenses.
 
 `scripts/export_onnx.py` regenerates `model/` from the original repo (needs torch, onnx, onnxscript, onnxruntime, safetensors).
